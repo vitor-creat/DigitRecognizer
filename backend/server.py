@@ -23,6 +23,7 @@ CORS(app)
 # após isso, é feita a inferencia e retorna a classe que o modelo tem mais confiança de ser a certa, com base no seu treino
 def predict(image_base64):
     image = Image.open(BytesIO(base64.b64decode(image_base64)))
+    
     transforms = v2.Compose([
     v2.ToImage(),
     v2.Resize((224,224)),
