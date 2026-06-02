@@ -114,7 +114,7 @@ function App() {
 
   return (
     <div style={{ padding: '20px', textAlign: 'center', fontFamily: 'sans-serif' }}>
-      <h1>MNIST Digit Recognizer</h1>
+      <h1>Animal Recognizer</h1>
       
       <input type="file" accept="image/*" onChange={handleFileChange} />
       
@@ -125,7 +125,7 @@ function App() {
       )}
 
       <button onClick={handleUpload} disabled={!selectedFile || loading}>
-        {loading ? 'Processando...' : 'Reconhecer Dígito'}
+        {loading ? 'Processando...' : 'Reconhecer Animal'}
       </button>
 
       {prediction !== null && (
