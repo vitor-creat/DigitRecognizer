@@ -7,7 +7,7 @@ import torch
 from model import DigitModel
 import numpy as np
 from torchvision.transforms import v2
-
+import matplotlib.pyplot as plt
 # vai carregar o modelo que reconhece os digitos
 # exemplo de como vai ser o load do modelo
 model = DigitModel().cuda()
@@ -15,6 +15,7 @@ model.load_state_dict(torch.load("ModelDigit.pth"))
 model.eval()
 
 CLS2LABEL = list({'X':0, '9':1, 'C':2, 'H':3, 'P':4, 'R':5, 'U':6, 'Z':7, 'E':8, '2':9, 'L':10, '5':11, 'T':12, 'F':13, 'A':14, 'M':15, 'W':16, '0':17, 'Y':18, 'D':19, 'S':20, '1':21, 'I':22, 'G':23, 'V':24, 'N':25, '3':26, '8':27, '6':28, 'Q':29, '4':30, '7':31, 'B':32, 'J':33, 'K':34})
+
 # print(CLS2LABEL)
 app = Flask(__name__)
 CORS(app)
@@ -27,13 +28,15 @@ def predict(image_base64, transforms):
     image_bytes = base64.b64decode(image_base64)
 
     LoadImage = Image.open(BytesIO(image_bytes)).convert("RGB")
-
+    plt.imshow(LoadImage)
+    plt.show()
+    
     image = transforms(LoadImage).unsqueeze(0).cuda()
 
     inferencia = model(image)
 
     maior = torch.argmax(inferencia, dim=1)
-
+    print(maior)
     classe_predita = CLS2LABEL[maior]
 
     return classe_predita
