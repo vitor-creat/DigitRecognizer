@@ -55,20 +55,24 @@ function App() {
           strokeColor="black"
           strokeWidth={24}
         />
-      
-        <button type="button" onClick={handleUndoClick} style={{background: 'blue'}}>
+     
+      <div id="button-group">
+
+        <button className="btn btn-undo" type="button" onClick={handleUndoClick}>
           Undo
         </button>
 
-        <button type="button" onClick={handleClearClick}>
+        <button className="btn btn-clear" type="button" onClick={handleClearClick}>
           Clear
         </button>
 
-        <button type="button" onClick={handleDrawnDigit} disabled={loading} >
+        <button className="btn btn-predict" type="button" onClick={handleDrawnDigit} disabled={loading} >
           {loading ? "Processando" : "Reconhecer Digito"}
         </button>
-
       </div>
+      </div>
+
+      
         {prediction !== null && (
        <div style={{ marginTop: '20px', fontSize: '2rem' }}>
          Resultado: <strong>{prediction}</strong>
