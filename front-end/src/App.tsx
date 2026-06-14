@@ -49,7 +49,7 @@ function App() {
         <h1>Draw a Digit</h1>
         <ReactSketchCanvas
           ref={canvasRef}
-          width="200px"
+          width="400px"
           height="400px"
           allowOnlyPointerType="all"
           strokeColor="black"
